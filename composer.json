@@ -15,7 +15,7 @@
     "license": "BSD-3-Clause",
     "require": {
         "silverstripe/cms": "^3.2",
-        "silverstripe/framework": "^3.2".
+        "silverstripe/framework": "^3.2",
         "dynamic/viewable-dataobject": "^1.0"
     },
     "require-dev": {
