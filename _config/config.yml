@@ -1,3 +1,6 @@
 ---
 Name: productwishlistconfig
 ---
+Member:
+  extensions:
+    - WishListMemberDataExtension
