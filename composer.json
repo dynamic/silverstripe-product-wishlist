@@ -1,0 +1,35 @@
+{
+    "name": "dynamic/silverstripe-product-wishlist",
+    "description": "adds a product wish list to your website",
+    "authors": [
+        {
+            "name": "Dynamic",
+            "email": "dev@dynamicagency.com",
+            "homepage": "http://www.dynamicagency.com"
+        }
+    ],
+    "keywords": [
+        "silverstripe"
+    ],
+    "type": "silverstripe-module",
+    "license": "BSD-3-Clause",
+    "require": {
+        "silverstripe/cms": "^3.2",
+        "silverstripe/framework": "^3.2".
+        "dynamic/viewable-dataobject": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "^3.7"
+    },
+    "config": {
+        "process-timeout": 600
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "installer-name": "product-wishlist",
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
