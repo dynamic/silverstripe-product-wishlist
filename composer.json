@@ -16,7 +16,9 @@
     "require": {
         "silverstripe/cms": "^3.2",
         "silverstripe/framework": "^3.2",
-        "dynamic/viewable-dataobject": "^1.0"
+        "dynamic/viewable-dataobject": "^1.0",
+        "dynamic/silverstripe-additional-formfields": "^1.0",
+        "dynamic/silverstripe-manageable-dataobject": "^1.0"
     },
     "require-dev": {
         "phpunit/PHPUnit": "^3.7"

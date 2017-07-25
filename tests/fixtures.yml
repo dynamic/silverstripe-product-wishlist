@@ -1,3 +1,57 @@
-ProductWishList:
+# Add your fixture data here.
+# https://docs.silverstripe.org/en/3.2/developer_guides/testing/fixtures/
+Permission:
+  admin:
+    Code: ADMIN
+  wishlist-create:
+    Code: WishList_CREATE
+  wishlist-edit:
+    Code: WishList_EDIT
+  wishlist-delete:
+    Code: WishList_DELETE
+  wishlist-view:
+    Code: WishList_VIEW
+Group:
+  admingroup:
+    Title: Admin
+    Code: admin
+    Permissions: =>Permission.admin
+  wishlistgroup:
+    Title: WishList
+    Code: wishlist
+    Permissions: =>Permission.wishlist-create,=>Permission.wishlist-edit,=>Permission.wishlist-delete,=>Permission.wishlist-view
+  wishlistnoaccess:
+    Title: NoAccess
+    Code: no-access
+Member:
+  cancreate:
+    FirstName: Jon
+    Surname: Doe
+    email: jon.doe@example.com
+    Groups: =>Group.wishlistgroup
+  cantcreate:
+    FirstName: Jane
+    Surname: Doe
+    email: jane.doe@example.com
+    Group: =>Group.wishlistnoaccess
+TestWishListPage:
+  one:
+    Title: "Test WishList Page"
+    URLSegment: "test-wishlist-page"
+    ParentID: 0
+TestProductWishList:
   one:
     Title: 'Wish List'
+    Private: true
+    Member: =>Member.cancreate
+  two:
+    Title: 'Wish List 2'
+    Private: true
+    Member: =>Member.cancreate
+  three:
+    Title: 'Wish List 3'
+    Private: false
+  four:
+    Title: 'Test WishList Extended'
+    Private: false
+    OtherField: "Foo Bar"

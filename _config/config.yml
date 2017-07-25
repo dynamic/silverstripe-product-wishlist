@@ -4,3 +4,8 @@ Name: productwishlistconfig
 Member:
   extensions:
     - WishListMemberDataExtension
+ProductWishList:
+  extensions:
+    - Dynamic\ViewableDataObject\Extensions\ViewableDataObject
+    - ManageableObjectDataExtension
+  use_id: true

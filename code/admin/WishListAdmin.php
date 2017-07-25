@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class WishListAdmin
+ */
 class WishListAdmin extends ModelAdmin
 {
     /**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class WishListMemberDataExtension
+ */
 class WishListMemberDataExtension extends DataExtension
 {
     /**
@@ -8,4 +11,5 @@ class WishListMemberDataExtension extends DataExtension
     private static $has_many = [
         'WishLists' => 'ProductWishList',
     ];
+
 }
