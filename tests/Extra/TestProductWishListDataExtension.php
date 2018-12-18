@@ -1,9 +1,18 @@
 <?php
 
+namespace Dynamic\Wishlist\Test\Extra;
+
+use SilverStripe\Core\Extension;
+use SilverStripe\Dev\TestOnly;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\RequiredFields;
+use SilverStripe\Forms\TextareaField;
+
 /**
  * Class TestProductWishListDataExtension
  */
-class TestProductWishListDataExtension extends DataExtension implements TestOnly
+class TestProductWishListDataExtension extends Extension implements TestOnly
 {
 
     /**

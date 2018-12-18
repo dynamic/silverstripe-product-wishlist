@@ -1,5 +1,12 @@
 <?php
 
+namespace Dynamic\Wishlist\Extensions;
+
+use Dynamic\Wishlist\Model\ProductWishList;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Core\Extension;
+use SilverStripe\Security\Security;
+
 /**
  * Class ProductWishListControllerExtension
  */
@@ -14,7 +21,7 @@ class ProductWishListControllerExtension extends Extension
     ];
 
     /**
-     * @return ContentController|Object
+     * @return \SilverStripe\CMS\Controllers\ContentController|Object
      */
     protected function getController()
     {
@@ -24,11 +31,12 @@ class ProductWishListControllerExtension extends Extension
     }
 
     /**
-     * @param SS_HTTPRequest|null $request
+     * @param HTTPRequest|null $request
      *
-     * @return ViewableData_Customised|SS_HTTPResponse
+     * @return \SilverStripe\View\ViewableData_Customised|\SilverStripe\Control\HTTPResponse
+     * @throws \SilverStripe\Control\HTTPResponse_Exception
      */
-    public function view(SS_HTTPRequest $request = null)
+    public function view(HTTPRequest $request = null)
     {
         if ($request === null) {
             $request = $this->getController()->getRequest();
@@ -36,7 +44,7 @@ class ProductWishListControllerExtension extends Extension
         $id = $request->param('ID');
 
         if ($record = ProductWishList::get()->byID($id)) {
-            if ($record->canView(Member::currentUser())) {
+            if ($record->canView(Security::getCurrentUser())) {
                 return $this->getController()->customise([
                     'WishList' => $record,
                     'Breadcrumbs' => $record->Breadcrumbs(),
@@ -51,12 +59,12 @@ class ProductWishListControllerExtension extends Extension
     }
 
     /**
-     * @param $collection
+     * @param \SilverStripe\ORM\ArrayList $collection
      * @param $searchCriteria
      */
     public function updateCollectionItems(&$collection, $searchCriteria)
     {
-        $collection = $collection->filter(['MemberID' => Member::currentUserID()]);
+        $collection = $collection->filter(['MemberID' => Security::getCurrentUser()->ID]);
     }
 
 }

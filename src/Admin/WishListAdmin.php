@@ -1,5 +1,10 @@
 <?php
 
+namespace Dynamic\Wishlist\Admin;
+
+use Dynamic\Wishlist\Model\ProductWishList;
+use SilverStripe\Admin\ModelAdmin;
+
 /**
  * Class WishListAdmin
  */
@@ -9,7 +14,7 @@ class WishListAdmin extends ModelAdmin
      * @var array
      */
     private static $managed_models = array(
-        'ProductWishList',
+        ProductWishList::class,
     );
 
     /**

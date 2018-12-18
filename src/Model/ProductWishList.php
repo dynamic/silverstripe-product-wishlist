@@ -1,5 +1,20 @@
 <?php
 
+namespace Dynamic\Wishlist\Model;
+
+use Dynamic\CoreTools\Form\CancelFormAction;
+use Dynamic\ManageableDataObject\Interfaces\ManageableDataObjectInterface;
+use Dynamic\ViewableDataObject\VDOInterfaces\ViewableDataObjectInterface;
+use SilverStripe\Control\Controller;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\FormAction;
+use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Security\Member;
+use SilverStripe\Security\Permission;
+use SilverStripe\Security\PermissionProvider;
+use SilverStripe\Security\Security;
+
 /**
  * Class ProductWishList
  *
@@ -8,8 +23,13 @@
  * @property int $MemberID
  * @method Member $Member
  */
-class ProductWishList extends DataObject implements PermissionProvider, Dynamic\ViewableDataObject\VDOInterfaces\ViewableDataObjectInterface, ManageableDataObjectInterface
+class ProductWishList extends DataObject implements PermissionProvider, ViewableDataObjectInterface, ManageableDataObjectInterface
 {
+
+    /**
+     * @var string
+     */
+    private static $table_name = 'ProductWishList';
 
     /**
      * @var array
@@ -23,7 +43,7 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
      * @var array
      */
     private static $has_one = [
-        'Member' => 'Member',
+        'Member' => Member::class,
     ];
 
     /**
@@ -34,12 +54,12 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
         parent::onBeforeWrite();
 
         if (!$this->MemberID > 0) {
-            $this->MemberID = Member::currentUserID();
+            $this->MemberID = Security::getCurrentUser();
         }
     }
 
     /**
-     * @param null $params
+     * @param array|null $params
      *
      * @return FieldList
      */
@@ -107,7 +127,7 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
     /**
      * set ParentPage for ViewableDataobject
      *
-     * @return string
+     * @return \SilverStripe\CMS\Model\SiteTree
      */
     public function getParentPage()
     {
@@ -165,7 +185,7 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
      */
     public function canEdit($member = null)
     {
-        $member = ($member === null) ? Member::currentUser() : $member;
+        $member = ($member === null) ? Security::getCurrentUser() : $member;
 
         return ((Permission::check('WishList_EDIT', 'any',
                         $member) && $member->ID == $this->MemberID) || Permission::check('ADMIN'));
@@ -178,7 +198,7 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
      */
     public function canDelete($member = null)
     {
-        $member = ($member === null) ? Member::currentUser() : $member;
+        $member = ($member === null) ? Security::getCurrentUser() : $member;
 
         return ((Permission::check('WishList_DELETE', 'any',
                         $member) && $member->ID == $this->MemberID) || Permission::check('ADMIN'));
@@ -186,12 +206,13 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
 
     /**
      * @param Member|null $member
+     * @param array $context
      *
      * @return bool|int
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = array())
     {
-        return Member::currentUser() && Permission::check('WishList_CREATE', 'any', $member);
+        return Security::getCurrentUser() && Permission::check('WishList_CREATE', 'any', $member);
     }
 
     /**
@@ -201,7 +222,7 @@ class ProductWishList extends DataObject implements PermissionProvider, Dynamic\
      */
     public function canView($member = null)
     {
-        $member = ($member === null) ? Member::currentUser() : $member;
+        $member = ($member === null) ? Security::getCurrentUser() : $member;
 
         return (!$this->Private) || ((Permission::check('WishList_VIEW', 'any',
                         $member) && $member->ID == $this->MemberID) || Permission::check('ADMIN'));

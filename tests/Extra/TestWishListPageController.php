@@ -1,23 +1,21 @@
 <?php
 
-/**
- * Class TestWishListPage
- */
-class TestWishListPage extends Page implements TestOnly
-{
+namespace Dynamic\Wishlist\Test\Extra;
 
-}
+use Dynamic\Wishlist\Extensions\ProductWishListControllerExtension;
+use SilverStripe\Dev\TestOnly;
+use SilverStripe\View\Requirements;
 
 /**
  * Class TestWishListPage_Controller
  */
-class TestWishListPage_Controller extends Page_Controller implements TestOnly
+class TestWishListPageController extends \PageController implements TestOnly
 {
 
     /**
      * @var string
      */
-    private static $managed_object = 'TestProductWishList';
+    private static $managed_object = TestProductWishList::class;
 
     /**
      * @var array
@@ -30,7 +28,7 @@ class TestWishListPage_Controller extends Page_Controller implements TestOnly
      * @var array
      */
     private static $extensions = [
-        'ProductWishListControllerExtension',
+        ProductWishListControllerExtension::class,
     ];
 
     /**
@@ -41,5 +39,4 @@ class TestWishListPage_Controller extends Page_Controller implements TestOnly
         parent::init();
         Requirements::clear();
     }
-
 }

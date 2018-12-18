@@ -11,6 +11,7 @@ Permission:
     Code: WishList_DELETE
   wishlist-view:
     Code: WishList_VIEW
+
 Group:
   admingroup:
     Title: Admin
@@ -23,6 +24,7 @@ Group:
   wishlistnoaccess:
     Title: NoAccess
     Code: no-access
+
 Member:
   cancreate:
     FirstName: Jon
@@ -34,11 +36,13 @@ Member:
     Surname: Doe
     email: jane.doe@example.com
     Group: =>Group.wishlistnoaccess
+
 TestWishListPage:
   one:
     Title: "Test WishList Page"
     URLSegment: "test-wishlist-page"
     ParentID: 0
+
 TestProductWishList:
   one:
     Title: 'Wish List'
