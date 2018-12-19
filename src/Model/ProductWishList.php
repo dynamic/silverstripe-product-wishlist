@@ -20,8 +20,12 @@ use SilverStripe\Security\Security;
  *
  * @property string $Title
  * @property bool $Private
+ *
  * @property int $MemberID
- * @method Member $Member
+ * @method Member $Member()
+ *
+ * @mixin \Dynamic\ViewableDataObject\Extensions\ViewableDataObject
+ * @mixin \Dynamic\ManageableDataObject\Extensions\ManageableObjectDataExtension
  */
 class ProductWishList extends DataObject implements PermissionProvider, ViewableDataObjectInterface, ManageableDataObjectInterface
 {
@@ -54,7 +58,7 @@ class ProductWishList extends DataObject implements PermissionProvider, Viewable
         parent::onBeforeWrite();
 
         if (!$this->MemberID > 0) {
-            $this->MemberID = Security::getCurrentUser();
+            $this->MemberID = Security::getCurrentUser()->ID;
         }
     }
 

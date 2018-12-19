@@ -25,9 +25,7 @@ class ProductWishListControllerExtension extends Extension
      */
     protected function getController()
     {
-        return ($this->owner->hasMethod('getCurrentPage'))
-            ? $this->owner->getCurrentPage()
-            : $this->owner;
+        return $this->owner;
     }
 
     /**
@@ -43,7 +41,12 @@ class ProductWishListControllerExtension extends Extension
         }
         $id = $request->param('ID');
 
-        if ($record = ProductWishList::get()->byID($id)) {
+        /** @var ProductWishList $record */
+        $record = ProductWishList::get()->filter([
+            'URLSegment' => $id,
+        ])->first();
+        
+        if ($record) {
             if ($record->canView(Security::getCurrentUser())) {
                 return $this->getController()->customise([
                     'WishList' => $record,

@@ -27,7 +27,7 @@ class ProductWishListControllerExtensionTest extends FunctionalTest
     ];
 
     /**
-     * 
+     *
      */
     public function setUp()
     {
