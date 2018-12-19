@@ -2,7 +2,7 @@
 
 namespace Dynamic\Wishlist\Model;
 
-use Dynamic\CoreTools\Form\CancelFormAction;
+use Dynamic\AdditionalFormFields\Form\CancelFormAction;
 use Dynamic\ManageableDataObject\Interfaces\ManageableDataObjectInterface;
 use Dynamic\ViewableDataObject\VDOInterfaces\ViewableDataObjectInterface;
 use SilverStripe\Control\Controller;
