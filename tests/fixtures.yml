@@ -1,6 +1,6 @@
 # Add your fixture data here.
 # https://docs.silverstripe.org/en/3.2/developer_guides/testing/fixtures/
-Permission:
+SilverStripe\Security\Permission:
   admin:
     Code: ADMIN
   wishlist-create:
@@ -12,46 +12,50 @@ Permission:
   wishlist-view:
     Code: WishList_VIEW
 
-Group:
+SilverStripe\Security\Group:
   admingroup:
     Title: Admin
     Code: admin
-    Permissions: =>Permission.admin
+    Permissions: =>SilverStripe\Security\Permission.admin
   wishlistgroup:
     Title: WishList
     Code: wishlist
-    Permissions: =>Permission.wishlist-create,=>Permission.wishlist-edit,=>Permission.wishlist-delete,=>Permission.wishlist-view
+    Permissions:
+      - =>SilverStripe\Security\Permission.wishlist-create
+      - =>SilverStripe\Security\Permission.wishlist-edit
+      - =>SilverStripe\Security\Permission.wishlist-delete
+      - =>SilverStripe\Security\Permission.wishlist-view
   wishlistnoaccess:
     Title: NoAccess
     Code: no-access
 
-Member:
+SilverStripe\Security\Member:
   cancreate:
     FirstName: Jon
     Surname: Doe
     email: jon.doe@example.com
-    Groups: =>Group.wishlistgroup
+    Groups: =>SilverStripe\Security\Group.wishlistgroup
   cantcreate:
     FirstName: Jane
     Surname: Doe
     email: jane.doe@example.com
-    Group: =>Group.wishlistnoaccess
+    Group: =>SilverStripe\Security\Group.wishlistnoaccess
 
-TestWishListPage:
+Dynamic\Wishlist\Test\Extra\TestWishListPage:
   one:
     Title: "Test WishList Page"
     URLSegment: "test-wishlist-page"
     ParentID: 0
 
-TestProductWishList:
+Dynamic\Wishlist\Test\Extra\TestProductWishList:
   one:
     Title: 'Wish List'
     Private: true
-    Member: =>Member.cancreate
+    Member: =>SilverStripe\Security\Member.cancreate
   two:
     Title: 'Wish List 2'
     Private: true
-    Member: =>Member.cancreate
+    Member: =>SilverStripe\Security\Member.cancreate
   three:
     Title: 'Wish List 3'
     Private: false
