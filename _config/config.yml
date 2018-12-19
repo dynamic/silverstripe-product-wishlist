@@ -1,11 +1,11 @@
 ---
 Name: productwishlistconfig
 ---
-Member:
+SilverStripe\Security\Member:
   extensions:
     - Dynamic\Wishlist\Extensions\WishListMemberDataExtension
 
-ProductWishList:
+Dynamic\Wishlist\Model\ProductWishList:
   extensions:
     - Dynamic\ViewableDataObject\Extensions\ViewableDataObject
     - Dynamic\ManageableDataObject\Extensions\ManageableObjectDataExtension
