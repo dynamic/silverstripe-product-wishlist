@@ -21,19 +21,31 @@ class ProductWishListControllerExtensionTest extends FunctionalTest
     /**
      * @var array
      */
-    protected $extraDataObjects = [
+    protected static $extra_dataobjects = [
         TestWishListPage::class,
         TestProductWishList::class,
     ];
+
+    /**
+     * 
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->session()->set('readingMode', 'Stage.Stage');
+        $this->session()->set('unsecuredDraftSite', true);
+    }
 
     /**
      *
      */
     public function testView()
     {
+        /** @var TestProductWishList $wishList */
         $wishList = $this->objFromFixture(TestProductWishList::class, 'one');
         /** @var TestWishListPage $wishListPage */
         $wishListPage = $this->objFromFixture(TestWishListPage::class, 'one');
+
         $response = $this->get(Controller::join_links(
             $wishListPage->Link(),
             'view',

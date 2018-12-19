@@ -2,12 +2,14 @@
 
 namespace Dynamic\Wishlist\Test\Model;
 
+use Dynamic\AdditionalFormFields\Form\CancelFormAction;
 use Dynamic\Wishlist\Model\ProductWishList;
 use Dynamic\Wishlist\Test\Extra\TestProductWishList;
 use Dynamic\Wishlist\Test\Extra\TestWishListPage;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\FormAction;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\Security\Member;
@@ -151,10 +153,10 @@ class ProductWishListTest extends SapphireTest
         /** @var TestProductWishList $wishList */
         $wishList = $this->objFromFixture(TestProductWishList::class, 'one');
         $this->assertNull($wishList->getFrontEndActions()->dataFieldByName('action_CancelFormAction'));
-        $this->assertInstanceOf('CancelFormAction',
+        $this->assertInstanceOf(CancelFormAction::class,
             $wishList->getFrontEndActions(true)->dataFieldByName('action_CancelFormAction'));
 
-        $this->assertInstanceOf('FormAction', $wishList->getFrontEndActions()->dataFieldByName('action_OtherAction'));
+        $this->assertInstanceOf(FormAction::class, $wishList->getFrontEndActions()->dataFieldByName('action_OtherAction'));
     }
 
     /**
