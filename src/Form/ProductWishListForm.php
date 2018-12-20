@@ -19,7 +19,7 @@ class ProductWishListForm extends Form
      * @param Controller $controller
      * @param string $name
      */
-    public function __construct(Controller $controller, $name)
+    public function __construct(Controller $controller, $name = 'WishListForm')
     {
         $wishList = Injector::inst()->get(ProductWishList::class);
 
