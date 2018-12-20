@@ -69,5 +69,4 @@ class ProductWishListControllerExtension extends Extension
     {
         $collection = $collection->filter(['MemberID' => Security::getCurrentUser()->ID]);
     }
-
 }

@@ -8,5 +8,5 @@ SilverStripe\Security\Member:
 Dynamic\Wishlist\Model\ProductWishList:
   extensions:
     - Dynamic\ViewableDataObject\Extensions\ViewableDataObject
-    - Dynamic\ManageableDataObject\Extensions\ManageableObjectDataExtension
+    - Dynamic\ManageableDataObject\Extensions\ManageableObjectExtension
   use_id: true

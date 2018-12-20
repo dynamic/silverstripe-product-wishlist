@@ -25,7 +25,7 @@ use SilverStripe\Security\Security;
  * @method Member $Member()
  *
  * @mixin \Dynamic\ViewableDataObject\Extensions\ViewableDataObject
- * @mixin \Dynamic\ManageableDataObject\Extensions\ManageableObjectDataExtension
+ * @mixin \Dynamic\ManageableDataObject\Extensions\ManageableObjectExtension
  */
 class ProductWishList extends DataObject implements PermissionProvider, ViewableDataObjectInterface, ManageableDataObjectInterface
 {
