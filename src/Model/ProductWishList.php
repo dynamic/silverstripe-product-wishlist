@@ -58,7 +58,9 @@ class ProductWishList extends DataObject implements PermissionProvider, Viewable
         parent::onBeforeWrite();
 
         if (!$this->MemberID > 0) {
-            $this->MemberID = Security::getCurrentUser()->ID;
+            if (Security::getCurrentUser()) {
+                $this->MemberID = Security::getCurrentUser()->ID;
+            }
         }
     }
 
