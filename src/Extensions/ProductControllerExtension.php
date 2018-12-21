@@ -3,9 +3,8 @@
 namespace Dynamic\Wishlist\Extensions;
 
 use Dynamic\Wishlist\Form\AddToWishListForm;
-use Dynamic\Wishlist\Model\ProductWishList;
 use SilverStripe\Core\Extension;
-use SilverStripe\Forms\Form;
+use SilverStripe\Security\Security;
 
 /**
  * Class ProductExtension
@@ -23,27 +22,14 @@ class ProductControllerExtension extends Extension
     ];
 
     /**
-     * @return \Dynamic\Wishlist\Form\AddToWishListForm
+     * @return \Dynamic\Wishlist\Form\AddToWishListForm|bool
      */
     public function WishListForm()
     {
+        if (!Security::getCurrentUser()) {
+            return false;
+        }
+
         return AddToWishListForm::create($this->owner, 'WishListForm');
-    }
-
-    /**
-     * @param $data
-     * @param \SilverStripe\Forms\Form $form
-     * @return \SilverStripe\Control\HTTPResponse
-     * @throws \Exception
-     */
-    public function addToWishList($data, Form $form)
-    {
-        /** @var ProductWishList|\Dynamic\Nucu\Extension\WishListExtension $list */
-        $list = ProductWishList::get()->filter([
-            'ID' => $data['List'],
-        ])->first();
-        $list->Products()->add($data['ProductID']);
-
-        return $this->owner->redirectBack();
     }
 }
