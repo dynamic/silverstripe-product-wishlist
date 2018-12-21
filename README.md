@@ -10,8 +10,7 @@ Allows users to create and manage a wish list on a website.
 - dynamic/silverstripe-manageable-dataobject ^2.0
 
 ## Installation
-
-This is how you install product-wishlist.
+`composer require dynamic/silverstripe-product-wishlist`
 
 ## Example usage
 

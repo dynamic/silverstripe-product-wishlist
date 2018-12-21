@@ -22,18 +22,22 @@ class ProductExtension extends Extension
     public function getRemoveLink()
     {
         $wishListPage = Config::inst()->get(ProductWishList::class, 'listing_page_class');
-        if ($this->canRemoveFromWishList()) {
-            /** @var \SilverStripe\CMS\Model\SiteTree $page */
-            if ($page = $wishListPage::get()->first()) {
-                return Controller::join_links(
-                    $page->Link('remove'),
-                    Controller::curr()->getRequest()->param('ID'),
-                    $this->owner->ID
-                );
-            }
+        /** @var \SilverStripe\CMS\Model\SiteTree $page */
+        $page = $page = $wishListPage::get()->first();
+
+        if (!$page) {
+            return false;
         }
 
-        return false;
+        if (!$this->canRemoveFromWishList()) {
+            return false;
+        }
+
+        return Controller::join_links(
+            $page->Link('remove'),
+            Controller::curr()->getRequest()->param('ID'),
+            $this->owner->ID
+        );
     }
 
     /**
