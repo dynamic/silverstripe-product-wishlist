@@ -37,7 +37,7 @@ class AddToWishListForm extends Form
         $this->extend('updateFields', $fields);
 
         $actions = FieldList::create(
-            FormAction::create('addToWishList', 'Add To List')
+            FormAction::create('addToWishList')->setTitle('Add To List')
         );
         $this->extend('updateActions', $actions);
 

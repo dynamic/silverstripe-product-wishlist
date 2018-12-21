@@ -19,7 +19,7 @@ class ProductControllerExtension extends Extension
      * @var array
      */
     private static $allowed_actions = [
-        'AddToWishListForm',
+        'WishListForm',
     ];
 
     /**
