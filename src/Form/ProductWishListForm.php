@@ -1,5 +1,12 @@
 <?php
 
+namespace Dynamic\Wishlist\Form;
+
+use Dynamic\Wishlist\Model\ProductWishList;
+use SilverStripe\Control\Controller;
+use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Forms\Form;
+
 /**
  * Class ProductWishListForm
  */
@@ -12,9 +19,9 @@ class ProductWishListForm extends Form
      * @param Controller $controller
      * @param string $name
      */
-    public function __construct(Controller $controller, $name)
+    public function __construct(Controller $controller, $name = 'WishListForm')
     {
-        $wishList = Injector::inst()->get('ProductWishList');
+        $wishList = Injector::inst()->get(ProductWishList::class);
 
         $fields = $wishList->getFrontEndFields();
         $actions = $wishList->getFrontEndActions();
