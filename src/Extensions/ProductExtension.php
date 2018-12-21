@@ -42,10 +42,18 @@ class ProductExtension extends Extension
     protected function canRemoveFromWishList()
     {
         $request = Controller::curr()->getRequest();
-        if ($request->param('Action') == 'view') {
-            $listID = $request->param('ID');
-            return (ProductWishList::get()->byID($listID)->canEdit(Security::getCurrentUser()));
+        if ($request->param('Action') != 'view') {
+            return false;
         }
-        return false;
+
+        $list = ProductWishList::get()->filter([
+            'URLSegment' => $request->param('ID'),
+        ])->first();
+
+        if (!$list) {
+            return false;
+        }
+
+        return $list->canEdit(Security::getCurrentUser());
     }
 }

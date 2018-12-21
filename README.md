@@ -1,10 +1,13 @@
 # product-wishlist
 
-adds a product wish list to your website
+Allows users to create and manage a wish list on a website.
 
 ## Requirements
 
-- SilverStripe 3.2
+- silverstripe/recipe-cms ^4.0
+- dynamic/viewable-dataobject ^2.0
+- dynamic/silverstripe-additional-formfields ^2.0
+- dynamic/silverstripe-manageable-dataobject ^2.0
 
 ## Installation
 
