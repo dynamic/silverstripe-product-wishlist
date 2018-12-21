@@ -49,7 +49,7 @@ class ProductWishListControllerExtensionTest extends FunctionalTest
         $response = $this->get(Controller::join_links(
             $wishListPage->Link(),
             'view',
-            $wishList->ID
+            $wishList->URLSegment
         ));
         $this->assertEquals(200, $response->getStatusCode());
     }
