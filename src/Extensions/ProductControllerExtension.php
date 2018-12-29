@@ -30,6 +30,6 @@ class ProductControllerExtension extends Extension
             return false;
         }
 
-        return AddToWishListForm::create($this->owner, 'WishListForm');
+        return AddToWishListForm::create($this->owner, __FUNCTION__);
     }
 }
