@@ -2,7 +2,6 @@
 
 namespace Dynamic\Wishlist\Form;
 
-
 use Dynamic\Wishlist\Model\ProductWishList;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\DropdownField;
@@ -13,18 +12,18 @@ use SilverStripe\Forms\HiddenField;
 use SilverStripe\Security\Security;
 
 /**
- * Class AddToWishListForm
+ * Class RemoveFromWishListForm
  * @package Dynamic\Wishlist\Form
  */
-class AddToWishListForm extends Form
+class RemoveFromWishListForm extends Form
 {
     /**
-     * AddToWishListForm constructor.
+     * RemoveFromWishListForm constructor.
      * @param \SilverStripe\Control\Controller $controller
      * @param string $name Defaults to AddToWishListForm
      * @param int $productID An easy way to override the id of the product to be added. If one is not provided the current page id will be used instead.
      */
-    public function __construct(Controller $controller, $name = 'AddToWishListForm', $productID = 0)
+    public function __construct(Controller $controller, $name = 'RemoveFromWishListForm', $productID = 0)
     {
         if ($productID < 1) {
             $productID = $controller->ID;
@@ -42,7 +41,7 @@ class AddToWishListForm extends Form
         $this->extend('updateFields', $fields, $productID);
 
         $actions = FieldList::create(
-            FormAction::create('addToWishList')->setTitle('Add To List')
+            FormAction::create('removeFromWishList')->setTitle('Remove From List')
         );
         $this->extend('updateActions', $actions, $productID);
 
@@ -52,6 +51,6 @@ class AddToWishListForm extends Form
         $reflection = new \ReflectionClass($this);
         $shortName = str_replace(array('.', '/'), '', $this->getName());
         $this->setHTMLID($reflection->getShortName() . '_' . $shortName . '_' . $productID);
-        $this->addExtraClass('add-to-wishlist-form');
+        $this->addExtraClass('remove-from-wishlist-form');
     }
 }

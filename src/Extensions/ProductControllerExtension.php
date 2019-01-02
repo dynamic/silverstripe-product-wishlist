@@ -3,6 +3,8 @@
 namespace Dynamic\Wishlist\Extensions;
 
 use Dynamic\Wishlist\Form\AddToWishListForm;
+use Dynamic\Wishlist\Form\RemoveFromWishListForm;
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\Extension;
 use SilverStripe\Security\Security;
 
@@ -22,14 +24,28 @@ class ProductControllerExtension extends Extension
     ];
 
     /**
+     * @param int|HTTPRequest $productID
      * @return \Dynamic\Wishlist\Form\AddToWishListForm|bool
      */
-    public function WishListForm()
+    public function WishListForm($productID = 0)
     {
         if (!Security::getCurrentUser()) {
             return false;
         }
 
-        return AddToWishListForm::create($this->owner, __FUNCTION__);
+        if (!$productID) {
+            $productID = $this->owner->ID;
+        } else if ($productID instanceof HTTPRequest) {
+            $productID = $productID->postVar('ProductID');
+        }
+
+        /** @var ProductWishList|WishListExtension $list */
+        $list = Security::getCurrentUser()->WishLists()->first();
+
+        if ($list->Products()->filter('ID', $productID)->first()) {
+            return RemoveFromWishListForm::create($this->owner, __FUNCTION__, $productID);
+        }
+
+        return AddToWishListForm::create($this->owner, __FUNCTION__, $productID);
     }
 }
