@@ -39,13 +39,6 @@ class ProductControllerExtension extends Extension
             $productID = $productID->postVar('ProductID');
         }
 
-        /** @var ProductWishList|WishListExtension $list */
-        $list = Security::getCurrentUser()->WishLists()->first();
-
-        if ($list->Products()->filter('ID', $productID)->first()) {
-            return RemoveFromWishListForm::create($this->owner, __FUNCTION__, $productID);
-        }
-
         return AddToWishListForm::create($this->owner, __FUNCTION__, $productID);
     }
 }
