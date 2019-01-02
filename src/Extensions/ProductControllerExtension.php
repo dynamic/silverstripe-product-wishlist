@@ -3,7 +3,6 @@
 namespace Dynamic\Wishlist\Extensions;
 
 use Dynamic\Wishlist\Form\AddToWishListForm;
-use Dynamic\Wishlist\Form\RemoveFromWishListForm;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\Extension;
 use SilverStripe\Security\Security;
