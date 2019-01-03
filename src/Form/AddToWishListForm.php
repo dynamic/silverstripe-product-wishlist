@@ -2,7 +2,6 @@
 
 namespace Dynamic\Wishlist\Form;
 
-
 use Dynamic\Wishlist\Model\ProductWishList;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\DropdownField;
