@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/dynamic/silverstripe-product-wishlist.svg?branch=master)](https://travis-ci.org/dynamic/silverstripe-product-wishlist)
+[![codecov](https://codecov.io/gh/dynamic/silverstripe-product-wishlist/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/silverstripe-product-wishlist)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dynamic/silverstripe-product-wishlist/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-product-wishlist/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/dynamic/silverstripe-product-wishlist/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-product-wishlist/build-status/master)
+
 # product-wishlist
 Allows users to create and manage a wish list on a website.
 
