@@ -67,6 +67,10 @@ class ProductWishListControllerExtension extends Extension
      */
     public function updateCollectionItems(&$collection, $searchCriteria)
     {
-        $collection = $collection->filter(['MemberID' => Security::getCurrentUser()->ID]);
+        $memberID = 0;
+        if ($member = Security::getCurrentUser()) {
+            $memberID = $member->ID;
+        }
+        $collection = $collection->filter(['MemberID' => $memberID]);
     }
 }
